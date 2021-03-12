@@ -8,6 +8,8 @@ const log = console.log;
 const parameters = process.argv.slice(2);
 const argv = parser(parameters);
 
+var figlet = require('figlet');
+ 
 const componentName = parameters[0];
 const fileName = (argv.f || 'component') + '.js' ;
 
@@ -17,8 +19,13 @@ let componentString = templateString.replace(/{name}/g, componentName);
 
 fs.writeFile(resolve() + '/' + fileName, componentString, function(err) {
   if(err) {
-    return log(chalk.red(err));
+    figlet('error!', function (err, data) {
+      log(chalk.red(data))
+    });
+    return;
   }
 
-  return log(chalk.green('successfully create component ' + componentName + '!'));
+  figlet('success!!', function (err, data) {
+    log(chalk.green(data))
+  });
 });
