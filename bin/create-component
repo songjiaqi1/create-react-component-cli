@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+const parser = require('yargs-parser');
+const { resolve, join } = require('path');
+const fs = require('fs');
+const chalk = require('chalk');
+const log = console.log;
+
+const parameters = process.argv.slice(2);
+const argv = parser(parameters);
+
+const componentName = parameters[0];
+const fileName = (argv.f || 'component') + '.js' ;
+
+const templateString = fs.readFileSync(join(__dirname, '../template'), 'utf-8');
+
+let componentString = templateString.replace(/{name}/g, componentName);
+
+fs.writeFile(resolve() + '/' + fileName, componentString, function(err) {
+  if(err) {
+    return log(chalk.red(err));
+  }
+
+  return log(chalk.green('successfully create component ' + componentName + '!'));
+});

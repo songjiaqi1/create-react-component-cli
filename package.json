@@ -1,0 +1,18 @@
+{
+  "name": "simply-crc-cli",
+  "version": "1.0.2",
+  "description": "create react component width simple command",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "rc": "./bin/create-component"
+  },
+  "author": "sjq",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "yargs-parser": "^20.2.7"
+  }
+}
